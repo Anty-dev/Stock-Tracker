@@ -25,7 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-/src/main/java/com/tracker/stocktracker/API.java
+src/main/java/com/tracker/stocktracker/API.java
 
 ### NetBeans ###
 /nbproject/private/
