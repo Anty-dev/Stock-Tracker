@@ -15,6 +15,12 @@ public class Stock {
 
     // Still considering if totalPrice should be here or in account class
 
+    public Stock() {
+        this.symbol = "";
+        this.price = 0.0;
+        this.quantity = 0;
+    }
+
     public Stock(String symbol, double price, int quantity) {
         this.symbol = symbol;
         this.price = price;

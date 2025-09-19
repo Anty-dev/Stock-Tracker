@@ -54,6 +54,12 @@ public class Account {
         }
 
         StockApi api = new StockApi();
+
+        if (isETF == true) {
+            api = new EtfApi(); // change the object api dynamic type to change the version of fetch that is called, which is the
+                                // overridden version in etfApi
+        }
+
         Stock stock = api.fetch(s, quantity, isETF);
 
         this.portfolio[this.pointer] = stock;

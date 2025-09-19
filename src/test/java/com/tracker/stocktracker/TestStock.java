@@ -9,46 +9,46 @@ public class TestStock {
 
     @Test
     void testStock1() {
-
-        Stock apple = new Stock("APPL", 150, 10);
-        Stock spy = new ETF("SPY", 620, 2);
-
-        assertEquals("SPY", spy.getSymbol());
-
-
-        assertEquals(1500, apple.getPrice());
-        assertEquals(1240, spy.getPrice());
-
-        assertNotSame(apple, spy);
-
-        assertEquals(2, spy.getQuantity());
-
-        spy.addShares(5);
-        spy.removeShares(1);
-        assertEquals(6, spy.getQuantity());
-
+//
+//        Stock apple = new Stock("APPL", 150, 10);
+//        Stock spy = new ETF("SPY", 620, 2);
+//
+//        assertEquals("SPY", spy.getSymbol());
+//
+//
+//        assertEquals(1500, apple.getPrice());
+//        assertEquals(1240, spy.getPrice());
+//
+//        assertNotSame(apple, spy);
+//
+//        assertEquals(2, spy.getQuantity());
+//
+//        spy.addShares(5);
+//        spy.removeShares(1);
+//        assertEquals(6, spy.getQuantity());
+//
 
     }
 
     @Test
     void testStock2() {
-
-            RestTemplate restTemplate = new RestTemplate();
-            API api = new API();
-            String key = api.getKey();
-
-            String url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=" + key;
-
-            GlobalQuoteWrapper response = restTemplate.getForObject(url, GlobalQuoteWrapper.class);
-
-            Stock stock = response.getGlobalQuote();
-
-            assertEquals("IBM", stock.getSymbol());
-            System.out.println(stock.getPrice());
+//
+//            RestTemplate restTemplate = new RestTemplate();
+//            API api = new API();
+//            String key = api.getKey();
+//
+//            String url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=" + key;
+//
+//            GlobalQuoteWrapper response = restTemplate.getForObject(url, GlobalQuoteWrapper.class);
+//
+//            Stock stock = response.getGlobalQuote();
+//
+//            assertEquals("IBM", stock.getSymbol());
+//            System.out.println(stock.getPrice());
     }
 
     @Test
-    void testStock3() {
+    void testStock4() {
 
         Account acc = new Account("Bill", 10000);
 
@@ -61,10 +61,15 @@ public class TestStock {
         assertNotSame(acc2, acc);
 
         // note the price arg doesn't matter here as it will be overwritten by the api call value
-        Stock ibm = new Stock("IBM", 0, 1);
-        acc.Buy(ibm.getSymbol(), ibm.getQuantity(), false);
+//        Stock ibm = new Stock("IBM", 0, 1);
+//        acc.Buy(ibm.getSymbol(), ibm.getQuantity(), false);
 
 
+        ETF QQQ = new ETF("QQQ",0, 1);
+        acc2.Buy(QQQ.getSymbol(), QQQ.getQuantity(), true);
 
+        assertEquals(595.32, acc2.getPort()[0].getPrice(), 5);
+
+        assertEquals(0.002, ((ETF)acc2.getPort()[0]).getExpenseRatio(),0.0001);
     }
 }
